@@ -1,0 +1,1 @@
+summon minecraft:armor_stand ~ ~ ~ {CustomName:'"spiral_traveller"', CustomNameVisible:1,NoGravity:1,Tags:["spiral_traveller"]}
