@@ -1,4 +1,5 @@
 scoreboard objectives remove monroe
 
-kill @e[tag=center]
-kill @e[tag=traveller]
+kill @e[tag=spiral_center]
+kill @e[tag=spiral_traveller]
+kill @e[tag=spiral_block]
