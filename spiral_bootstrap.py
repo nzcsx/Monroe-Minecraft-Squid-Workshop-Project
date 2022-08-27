@@ -4,6 +4,9 @@
 # Number of arms
 num_arm = 6
 
+# Starting radius from the center
+rad_init = 6
+
 # The angle in between two adjacent blocks in one arm
 ang_res = 0.5
 
@@ -28,7 +31,6 @@ import numpy as np
 
 
 # summon/traveller.mcfunction
-
 path = os.path.join('Monroe-Datapack-Squid-Workshop-1.19.1','data','monroe','functions','classes','spiral','summon','traveller.mcfunction')
 n = open(path, "w+")
 
@@ -42,10 +44,10 @@ for arm_idx in range(0, \
                              half_num_blks * ang_res + ang_res, \
                              ang_res):
         result += """execute at @e[tag=spiral_center] run summon minecraft:armor_stand ~{} ~{} ~ {{CustomName:'"spiral_traveller"',CustomNameVisible:0,NoGravity:1,Marker:1,Invisible:1,Tags:["spiral_traveller","colour_{}"],Passengers:[{{"id":"minecraft:falling_block",BlockState:{{Name:"minecraft:{}_concrete"}},NoGravity:1b,Time:-2147483648,DropItem:0b,HurtEntities:0b,Tags:["spiral_block"]}}]}}\n""" \
-            .format(  f'{round(math.cos(  float(angle + d_angle) * math.pi / 180  ) * 5, 4):.4f}'  , \
-                      f'{round(math.sin(  float(angle + d_angle) * math.pi / 180  ) * 5, 4):.4f}'  , \
-                      arm_idx                                                                      , \
-                      colours[arm_idx]                                                             )
+            .format(  f'{round(math.cos(  float(angle + d_angle) * math.pi / 180  ) * rad_init, 4):.4f}'  , \
+                      f'{round(math.sin(  float(angle + d_angle) * math.pi / 180  ) * rad_init, 4):.4f}'  , \
+                      arm_idx % len(colours)                                                              , \
+                      colours[ arm_idx % len(colours) ]                                                   )
     result += "\n"
 
 n.write(result)
@@ -63,12 +65,12 @@ for arm_idx in range(0, \
                      num_arm, \
                      1):
     result += """execute at @s[tag=colour_{}] facing entity @e[tag=spiral_center] feet positioned ~ ~0.5 ~ run setblock ~-0.5 ~0.5 ~ {}_wool\n""" \
-        .format(  arm_idx           , \
-                  colours[arm_idx]  )
+        .format(  arm_idx % len(colours)             , \
+                  colours[ arm_idx % len(colours) ]  )
 result += "\n"
 result += "# move\n"
-result += """execute at @s facing entity @e[tag=spiral_center] feet run tp @s ~{} ~{} ~ 90 -90""" \
-    .format(  tan_speed, 
+result += """execute at @s facing entity @e[tag=spiral_center] feet run tp @s ~{} ~{} ~ 90 -90\n""" \
+    .format(  tan_speed      , \
               0 - rad_speed  )
 n.write(result)
 n.close()
@@ -82,12 +84,12 @@ for arm_idx in range(0, \
                      num_arm, \
                      1):
     result += """execute at @s[tag=colour_{}] facing entity @e[tag=spiral_center] feet positioned ~ ~0.5 ~ run setblock ^ ^0.5 ^0.5 {}_wool\n""" \
-        .format(  arm_idx           , \
-                  colours[arm_idx]  )
+        .format(  arm_idx % len(colours)             , \
+                  colours[ arm_idx % len(colours) ]  )
 result += "\n"
 result += "# move\n"
-result += """execute at @s facing entity @e[tag=spiral_center] feet run tp @s ^ ^{} ^{} ~ ~""" \
-    .format(  0 - tan_speed, 
+result += """execute at @s facing entity @e[tag=spiral_center] feet run tp @s ^ ^{} ^{} ~ ~\n""" \
+    .format(  0 - tan_speed  , \
               0 - rad_speed  )
 n.write(result)
 n.close()
@@ -101,12 +103,12 @@ for arm_idx in range(0, \
                      num_arm, \
                      1):
     result += """execute at @s[tag=colour_{}] facing entity @e[tag=spiral_center] feet positioned ~ ~0.5 ~ run setblock ^ ^-0.5 ^0.5 {}_wool\n""" \
-        .format(  arm_idx           , \
-                  colours[arm_idx]  )
+        .format(  arm_idx % len(colours)             , \
+                  colours[ arm_idx % len(colours) ]  )
 result += "\n"
 result += "# move\n"
-result += """execute at @s facing entity @e[tag=spiral_center] feet run tp @s ^ ^{} ^{} ~ ~""" \
-    .format(  tan_speed, 
+result += """execute at @s facing entity @e[tag=spiral_center] feet run tp @s ^ ^{} ^{} ~ ~\n""" \
+    .format(  tan_speed      , \
               0 - rad_speed  )
 n.write(result)
 n.close()
@@ -120,17 +122,17 @@ for arm_idx in range(0, \
                      num_arm, \
                      1):
     result += """execute at @s[tag=colour_{}] facing entity @e[tag=spiral_center] feet positioned ~ ~0.5 ~ run setblock ~0.5 ~-0.5 ~ {}_wool\n""" \
-        .format(  arm_idx           , \
-                  colours[arm_idx]  )
+        .format(  arm_idx % len(colours)             , \
+                  colours[ arm_idx % len(colours) ]  )
 result += "\n"
 result += "# move\n"
-result += """execute at @s facing entity @e[tag=spiral_center] feet run tp @s ~{} ~{} ~ -90 90""" \
-    .format(  0 - tan_speed, 
-              rad_speed  )
+result += """execute at @s facing entity @e[tag=spiral_center] feet run tp @s ~{} ~{} ~ -90 90\n""" \
+    .format(  0 - tan_speed  , \
+              rad_speed      )
 n.write(result)
 n.close()
 
 
 
 # done
-print('done!')
+print('Spiral: done!')
