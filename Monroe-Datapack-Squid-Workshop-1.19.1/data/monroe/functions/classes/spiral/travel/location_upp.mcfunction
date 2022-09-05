@@ -1,10 +1,13 @@
 # setblock
-execute at @s[tag=colour_0] facing entity @e[tag=spiral_center] feet positioned ~ ~0.5 ~ run setblock ~0.5 ~-0.5 ~ orange_wool
-execute at @s[tag=colour_1] facing entity @e[tag=spiral_center] feet positioned ~ ~0.5 ~ run setblock ~0.5 ~-0.5 ~ light_blue_wool
-execute at @s[tag=colour_2] facing entity @e[tag=spiral_center] feet positioned ~ ~0.5 ~ run setblock ~0.5 ~-0.5 ~ pink_wool
-execute at @s[tag=colour_3] facing entity @e[tag=spiral_center] feet positioned ~ ~0.5 ~ run setblock ~0.5 ~-0.5 ~ yellow_wool
-execute at @s[tag=colour_4] facing entity @e[tag=spiral_center] feet positioned ~ ~0.5 ~ run setblock ~0.5 ~-0.5 ~ red_wool
-execute at @s[tag=colour_5] facing entity @e[tag=spiral_center] feet positioned ~ ~0.5 ~ run setblock ~0.5 ~-0.5 ~ lime_wool
+execute at @s[tag=colour_0] facing entity @e[tag=spiral_centre] feet positioned ~ ~0.5 ~ run setblock ~0.5 ~-0.5 ~ orange_wool keep
+execute at @s[tag=colour_1] facing entity @e[tag=spiral_centre] feet positioned ~ ~0.5 ~ run setblock ~0.5 ~-0.5 ~ light_blue_wool keep
+execute at @s[tag=colour_2] facing entity @e[tag=spiral_centre] feet positioned ~ ~0.5 ~ run setblock ~0.5 ~-0.5 ~ pink_wool keep
+execute at @s[tag=colour_3] facing entity @e[tag=spiral_centre] feet positioned ~ ~0.5 ~ run setblock ~0.5 ~-0.5 ~ yellow_wool keep
+execute at @s[tag=colour_4] facing entity @e[tag=spiral_centre] feet positioned ~ ~0.5 ~ run setblock ~0.5 ~-0.5 ~ red_wool keep
+execute at @s[tag=colour_5] facing entity @e[tag=spiral_centre] feet positioned ~ ~0.5 ~ run setblock ~0.5 ~-0.5 ~ lime_wool keep
 
 # move
-execute at @s facing entity @e[tag=spiral_center] feet run tp @s ~-0.1 ~0.1 ~ -90 90
+execute at @s facing entity @e[tag=spiral_centre] feet run tp @s ~-0.1 ~0.1 ~ 0 0
+
+# re-adjust z coordinate
+data modify entity @s Pos[2] merge from entity @e[tag=spiral_centre,limit=1] Pos[2]

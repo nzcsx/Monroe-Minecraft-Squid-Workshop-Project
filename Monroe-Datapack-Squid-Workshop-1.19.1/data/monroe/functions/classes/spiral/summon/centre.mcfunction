@@ -1,1 +1,1 @@
-summon minecraft:armor_stand ~ ~ ~ {CustomName:'"spiral_center"', CustomNameVisible:1,NoGravity:1,Marker:1,Tags:["spiral_center"]}
+summon armor_stand ~ ~ ~ {CustomName:'"spiral_centre"', CustomNameVisible:1,NoGravity:1,Marker:1,Tags:["spiral_centre"]}

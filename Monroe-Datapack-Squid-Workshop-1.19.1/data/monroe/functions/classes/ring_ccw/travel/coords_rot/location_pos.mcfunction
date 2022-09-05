@@ -1,0 +1,1 @@
+execute store result entity @s Pose.Head[2] float -1 run data get entity @s Rotation[1]
