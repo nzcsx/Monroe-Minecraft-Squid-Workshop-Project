@@ -1,4 +1,4 @@
-# setblock
+# setblock for any distance
 execute as @s[tag=colour_0] run setblock ^ ^ ^0.2 orange_stained_glass_pane[east=true,west=true] keep
 execute as @s[tag=colour_1] run setblock ^ ^ ^0.2 light_blue_stained_glass_pane[east=true,west=true] keep
 execute as @s[tag=colour_2] run setblock ^ ^ ^0.2 pink_stained_glass_pane[east=true,west=true] keep

@@ -69,7 +69,7 @@ path = os.path.join('Monroe-Datapack-Squid-Workshop-1.19.1','data','monroe','fun
 n = open(path, "w+")
 result = ""
 
-result += "# # setblock for any distance\n"
+result += "# setblock for any distance\n"
 result += "execute as @e[tag=circle_traveller] at @s positioned ~ ~0.5 ~0.4375 facing entity @e[type=marker,tag=circle_centre,limit=1] feet run function monroe:classes/circle/travel/location_any"
 
 result += "\n# fill for 50 meters away\n"
@@ -85,12 +85,12 @@ n.close()
 # # location_any.mcfunction
 path = os.path.join('Monroe-Datapack-Squid-Workshop-1.19.1','data','monroe','functions','classes','circle','travel','location_any.mcfunction')
 n = open(path, "w+")
-result = ""
 
+result = "# setblock for any distance\n"
 for arm_idx in range(0, \
                      len(colours), \
                      1):
-    result += """execute as @e[tag=colour_{}] run setblock ^ ^ ^0.2 {}_stained_glass_pane[east=true,west=true] keep\n""" \
+    result += """execute as @s[tag=colour_{}] run setblock ^ ^ ^0.2 {}_stained_glass_pane[east=true,west=true] keep\n""" \
         .format(  arm_idx % len(colours)             , \
                   colours[ arm_idx % len(colours) ]  )
 
@@ -100,9 +100,8 @@ n.close()
 # # location_further.mcfunction
 path = os.path.join('Monroe-Datapack-Squid-Workshop-1.19.1','data','monroe','functions','classes','circle','travel','location_further.mcfunction')
 n = open(path, "w+")
-result = ""
 
-result += "# fill for 50 meters away\n"
+result = "# fill for 50 meters away\n"
 for arm_idx in range(0, \
                      len(colours), \
                      1):
