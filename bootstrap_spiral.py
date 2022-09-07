@@ -52,7 +52,7 @@ for arm_idx in range(0, \
     for d_angle in np.arange(0 - half_num_blks * ang_res, \
                              half_num_blks * ang_res + ang_res, \
                              ang_res):
-        result += """execute at @e[tag=spiral_centre] run summon armor_stand ~{} ~{} ~ {{CustomName:'"spiral_traveller"',CustomNameVisible:0,NoGravity:1,Marker:1,Invisible:1,Tags:["spiral_traveller","colour_{}"],Passengers:[{{"id":"falling_block",BlockState:{{Name:"{}_concrete"}},NoGravity:1b,Time:-2147483648,DropItem:0b,HurtEntities:0b,Tags:["spiral_block"]}}]}}\n""" \
+        result += """execute at @e[type=marker,tag=spiral_centre,limit=1] run summon armor_stand ~{} ~{} ~ {{CustomName:'"spiral_traveller"',CustomNameVisible:0,NoGravity:1,Marker:1,Invisible:1,Tags:["spiral_traveller","colour_{}"],Passengers:[{{"id":"falling_block",BlockState:{{Name:"{}_concrete"}},NoGravity:1b,Time:-2147483648,DropItem:0b,HurtEntities:0b,Tags:["spiral_block"]}}]}}\n""" \
             .format(  f'{round(math.cos(  float(angle + d_angle) * math.pi / 180  ) * rad_init, 4):.4f}'  , \
                       f'{round(math.sin(  float(angle + d_angle) * math.pi / 180  ) * rad_init, 4):.4f}'  , \
                       arm_idx % len(colours)                                                              , \
@@ -70,8 +70,8 @@ path = os.path.join('Monroe-Datapack-Squid-Workshop-1.19.1','data','monroe','fun
 n = open(path, "w+")
 
 result = "# travel\n"
-result += "execute store result score x_centre monroe run data get entity @e[tag=spiral_centre,limit=1] Pos[0] 10000\n"
-result += "execute store result score y_centre monroe run data get entity @e[tag=spiral_centre,limit=1] Pos[1] 10000\n\n"
+result += "execute store result score x_centre monroe run data get entity @e[type=marker,tag=spiral_centre,limit=1] Pos[0] 10000\n"
+result += "execute store result score y_centre monroe run data get entity @e[type=marker,tag=spiral_centre,limit=1] Pos[1] 10000\n\n"
 result += "execute as @e[tag=spiral_traveller] run function monroe:classes/spiral/travel/check_location"
 
 n.write(result)
@@ -108,17 +108,17 @@ result += "# setblock\n"
 for arm_idx in range(0, \
                      num_arm, \
                      1):
-    result += """execute at @s[tag=colour_{}] facing entity @e[tag=spiral_centre] feet positioned ~ ~0.5 ~ run setblock ~-0.5 ~0.5 ~ {}_wool keep\n""" \
+    result += """execute at @s[tag=colour_{}] facing entity @e[type=marker,tag=spiral_centre,limit=1] feet positioned ~ ~0.5 ~ run setblock ~-0.5 ~0.5 ~ {}_wool keep\n""" \
         .format(  arm_idx % len(colours)             , \
                   colours[ arm_idx % len(colours) ]  )
 
 result += "\n# move\n"
-result += """execute at @s facing entity @e[tag=spiral_centre] feet run tp @s ~{} ~{} ~ 0 0\n""" \
+result += """execute at @s facing entity @e[type=marker,tag=spiral_centre,limit=1] feet run tp @s ~{} ~{} ~ 0 0\n""" \
     .format(  tan_speed      , \
               0 - rad_speed  )
 
 result += "\n# re-adjust z coordinate\n"
-result += "data modify entity @s Pos[2] merge from entity @e[tag=spiral_centre,limit=1] Pos[2]"
+result += "data modify entity @s Pos[2] merge from entity @e[type=marker,tag=spiral_centre,limit=1] Pos[2]"
 
 n.write(result)
 n.close()
@@ -132,17 +132,17 @@ result += "# setblock\n"
 for arm_idx in range(0, \
                      num_arm, \
                      1):
-    result += """execute at @s[tag=colour_{}] facing entity @e[tag=spiral_centre] feet positioned ~ ~0.5 ~ run setblock ^ ^0.5 ^0.5 {}_wool keep\n""" \
+    result += """execute at @s[tag=colour_{}] facing entity @e[type=marker,tag=spiral_centre,limit=1] feet positioned ~ ~0.5 ~ run setblock ^ ^0.5 ^0.5 {}_wool keep\n""" \
         .format(  arm_idx % len(colours)             , \
                   colours[ arm_idx % len(colours) ]  )
 
 result += "\n# move\n"
-result += """execute at @s facing entity @e[tag=spiral_centre] feet run tp @s ^ ^{} ^{} 0 0\n""" \
+result += """execute at @s facing entity @e[type=marker,tag=spiral_centre,limit=1] feet run tp @s ^ ^{} ^{} 0 0\n""" \
     .format(  0 - tan_speed  , \
               0 - rad_speed  )
 
 result += "\n# re-adjust z coordinate\n"
-result += "data modify entity @s Pos[2] merge from entity @e[tag=spiral_centre,limit=1] Pos[2]"
+result += "data modify entity @s Pos[2] merge from entity @e[type=marker,tag=spiral_centre,limit=1] Pos[2]"
 
 n.write(result)
 n.close()
@@ -156,17 +156,17 @@ result += "# setblock\n"
 for arm_idx in range(0, \
                      num_arm, \
                      1):
-    result += """execute at @s[tag=colour_{}] facing entity @e[tag=spiral_centre] feet positioned ~ ~0.5 ~ run setblock ^ ^-0.5 ^0.5 {}_wool keep\n""" \
+    result += """execute at @s[tag=colour_{}] facing entity @e[type=marker,tag=spiral_centre,limit=1] feet positioned ~ ~0.5 ~ run setblock ^ ^-0.5 ^0.5 {}_wool keep\n""" \
         .format(  arm_idx % len(colours)             , \
                   colours[ arm_idx % len(colours) ]  )
     
 result += "\n# move\n"
-result += """execute at @s facing entity @e[tag=spiral_centre] feet run tp @s ^ ^{} ^{} 0 0\n""" \
+result += """execute at @s facing entity @e[type=marker,tag=spiral_centre,limit=1] feet run tp @s ^ ^{} ^{} 0 0\n""" \
     .format(  tan_speed      , \
               0 - rad_speed  )
 
 result += "\n# re-adjust z coordinate\n"
-result += "data modify entity @s Pos[2] merge from entity @e[tag=spiral_centre,limit=1] Pos[2]"
+result += "data modify entity @s Pos[2] merge from entity @e[type=marker,tag=spiral_centre,limit=1] Pos[2]"
 
 n.write(result)
 n.close()
@@ -180,17 +180,17 @@ result += "# setblock\n"
 for arm_idx in range(0, \
                      num_arm, \
                      1):
-    result += """execute at @s[tag=colour_{}] facing entity @e[tag=spiral_centre] feet positioned ~ ~0.5 ~ run setblock ~0.5 ~-0.5 ~ {}_wool keep\n""" \
+    result += """execute at @s[tag=colour_{}] facing entity @e[type=marker,tag=spiral_centre,limit=1] feet positioned ~ ~0.5 ~ run setblock ~0.5 ~-0.5 ~ {}_wool keep\n""" \
         .format(  arm_idx % len(colours)             , \
                   colours[ arm_idx % len(colours) ]  )
 
 result += "\n# move\n"
-result += """execute at @s facing entity @e[tag=spiral_centre] feet run tp @s ~{} ~{} ~ 0 0\n""" \
+result += """execute at @s facing entity @e[type=marker,tag=spiral_centre,limit=1] feet run tp @s ~{} ~{} ~ 0 0\n""" \
     .format(  0 - tan_speed  , \
               rad_speed      )
 
 result += "\n# re-adjust z coordinate\n"
-result += "data modify entity @s Pos[2] merge from entity @e[tag=spiral_centre,limit=1] Pos[2]"
+result += "data modify entity @s Pos[2] merge from entity @e[type=marker,tag=spiral_centre,limit=1] Pos[2]"
 
 n.write(result)
 n.close()

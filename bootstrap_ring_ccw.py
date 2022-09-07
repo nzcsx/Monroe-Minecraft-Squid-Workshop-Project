@@ -52,7 +52,7 @@ for arm_idx in range(0, \
     for d_angle in np.arange(0 - half_num_blks * ang_res, \
                              half_num_blks * ang_res + ang_res, \
                              ang_res):
-        result += """execute at @e[tag=ring_ccw_centre] run summon minecraft:armor_stand ~{} ~{} ~ {{CustomName:'"ring_ccw_traveller"',CustomNameVisible:0,NoGravity:1,Marker:1,Invisible:1,Tags:["ring_ccw_traveller","colour_{}"],ArmorItems:[{{}},{{}},{{}},{{id:"{}_concrete",Count:1b}}],Pose:{{Head:[90f,0f,0f]}}}}\n""" \
+        result += """execute at @e[type=marker,tag=ring_ccw_centre,limit=1] run summon minecraft:armor_stand ~{} ~{} ~ {{CustomName:'"ring_ccw_traveller"',CustomNameVisible:0,NoGravity:1,Marker:1,Invisible:1,Tags:["ring_ccw_traveller","colour_{}"],ArmorItems:[{{}},{{}},{{}},{{id:"{}_concrete",Count:1b}}],Pose:{{Head:[90f,0f,0f]}}}}\n""" \
             .format(  f'{round(math.cos(  float(angle + d_angle) * math.pi / 180  ) * rad_init, 4):.4f}'  , \
                       f'{round(math.sin(  float(angle + d_angle) * math.pi / 180  ) * rad_init, 4):.4f}'  , \
                       arm_idx % len(colours)                                                              , \
@@ -70,8 +70,8 @@ path = os.path.join('Monroe-Datapack-Squid-Workshop-1.19.1','data','monroe','fun
 n = open(path, "w+")
 
 result = "# travel\n"
-result += "execute store result score x_centre monroe run data get entity @e[tag=ring_ccw_centre,limit=1] Pos[0] 10000\n"
-result += "execute store result score y_centre monroe run data get entity @e[tag=ring_ccw_centre,limit=1] Pos[1] 10000\n\n"
+result += "execute store result score x_centre monroe run data get entity @e[type=marker,tag=ring_ccw_centre,limit=1] Pos[0] 10000\n"
+result += "execute store result score y_centre monroe run data get entity @e[type=marker,tag=ring_ccw_centre,limit=1] Pos[1] 10000\n\n"
 result += "execute as @e[tag=ring_ccw_traveller] run function monroe:classes/ring_ccw/travel/coords_xyz/check_location"
 
 n.write(result)
@@ -105,17 +105,17 @@ n = open(path, "w+")
 result = ""
 
 result += "# move coordinates\n"
-result += """execute at @s facing entity @e[tag=ring_ccw_centre] feet positioned ^ ^{} ^{} facing entity @e[tag=ring_ccw_centre] feet run tp @s ~ ~ ~ 0 ~\n""" \
+result += """execute at @s facing entity @e[type=marker,tag=ring_ccw_centre,limit=1] feet positioned ^ ^{} ^{} facing entity @e[type=marker,tag=ring_ccw_centre,limit=1] feet run tp @s ~ ~ ~ 0 ~\n""" \
     .format(  tan_speed      , \
               0 - rad_speed  )
 
 result += "\n# move poses\n"
-result += """execute at @s facing entity @e[tag=ring_ccw_centre] feet positioned ^ ^{} ^{} run function monroe:classes/ring_ccw/travel/coords_rot/check_location\n""" \
+result += """execute at @s facing entity @e[type=marker,tag=ring_ccw_centre,limit=1] feet positioned ^ ^{} ^{} run function monroe:classes/ring_ccw/travel/coords_rot/check_location\n""" \
     .format(  tan_speed      , \
               0 - rad_speed  )
 
 result += "\n# re-adjust z coordinate\n"
-result += "data modify entity @s Pos[2] set from entity @e[tag=ring_ccw_centre,limit=1] Pos[2]"
+result += "data modify entity @s Pos[2] set from entity @e[type=marker,tag=ring_ccw_centre,limit=1] Pos[2]"
 
 n.write(result)
 n.close()
@@ -126,17 +126,17 @@ n = open(path, "w+")
 result = ""
 
 result += "\n# move coordinates\n"
-result += """execute at @s facing entity @e[tag=ring_ccw_centre] feet positioned ^ ^{} ^{} facing entity @e[tag=ring_ccw_centre] feet run tp @s ~ ~ ~ 0 ~\n""" \
+result += """execute at @s facing entity @e[type=marker,tag=ring_ccw_centre,limit=1] feet positioned ^ ^{} ^{} facing entity @e[type=marker,tag=ring_ccw_centre,limit=1] feet run tp @s ~ ~ ~ 0 ~\n""" \
     .format(  0 - tan_speed  , \
               0 - rad_speed  )
 
 result += "\n# move poses\n"
-result += """execute at @s facing entity @e[tag=ring_ccw_centre] feet positioned ^ ^{} ^{} run function monroe:classes/ring_ccw/travel/coords_rot/check_location\n""" \
+result += """execute at @s facing entity @e[type=marker,tag=ring_ccw_centre,limit=1] feet positioned ^ ^{} ^{} run function monroe:classes/ring_ccw/travel/coords_rot/check_location\n""" \
     .format(  0 - tan_speed  , \
               0 - rad_speed  )
 
 result += "\n# re-adjust z coordinate\n"
-result += "data modify entity @s Pos[2] set from entity @e[tag=ring_ccw_centre,limit=1] Pos[2]"
+result += "data modify entity @s Pos[2] set from entity @e[type=marker,tag=ring_ccw_centre,limit=1] Pos[2]"
 
 n.write(result)
 n.close()
@@ -147,17 +147,17 @@ n = open(path, "w+")
 result = ""
     
 result += "\n# move coordinates\n"
-result += """execute at @s facing entity @e[tag=ring_ccw_centre] feet positioned ^ ^{} ^{} facing entity @e[tag=ring_ccw_centre] feet run tp @s ~ ~ ~ 0 ~\n""" \
+result += """execute at @s facing entity @e[type=marker,tag=ring_ccw_centre,limit=1] feet positioned ^ ^{} ^{} facing entity @e[type=marker,tag=ring_ccw_centre,limit=1] feet run tp @s ~ ~ ~ 0 ~\n""" \
     .format(  tan_speed      , \
               0 - rad_speed  )
 
 result += "\n# move poses\n"
-result += """execute at @s facing entity @e[tag=ring_ccw_centre] feet positioned ^ ^{} ^{} run function monroe:classes/ring_ccw/travel/coords_rot/check_location\n""" \
+result += """execute at @s facing entity @e[type=marker,tag=ring_ccw_centre,limit=1] feet positioned ^ ^{} ^{} run function monroe:classes/ring_ccw/travel/coords_rot/check_location\n""" \
     .format(  tan_speed      , \
               0 - rad_speed  )
 
 result += "\n# re-adjust z coordinate\n"
-result += "data modify entity @s Pos[2] set from entity @e[tag=ring_ccw_centre,limit=1] Pos[2]"
+result += "data modify entity @s Pos[2] set from entity @e[type=marker,tag=ring_ccw_centre,limit=1] Pos[2]"
 
 n.write(result)
 n.close()
@@ -168,17 +168,17 @@ n = open(path, "w+")
 result = ""
 
 result += "\n# move coordinates\n"
-result += """execute at @s facing entity @e[tag=ring_ccw_centre] feet positioned ^ ^{} ^{} facing entity @e[tag=ring_ccw_centre] feet run tp @s ~ ~ ~ 0 ~\n""" \
+result += """execute at @s facing entity @e[type=marker,tag=ring_ccw_centre,limit=1] feet positioned ^ ^{} ^{} facing entity @e[type=marker,tag=ring_ccw_centre,limit=1] feet run tp @s ~ ~ ~ 0 ~\n""" \
     .format(  0 - tan_speed  , \
               rad_speed      )
 
 result += "\n# move poses\n"
-result += """execute at @s facing entity @e[tag=ring_ccw_centre] feet positioned ^ ^{} ^{} run function monroe:classes/ring_ccw/travel/coords_rot/check_location\n""" \
+result += """execute at @s facing entity @e[type=marker,tag=ring_ccw_centre,limit=1] feet positioned ^ ^{} ^{} run function monroe:classes/ring_ccw/travel/coords_rot/check_location\n""" \
     .format(  0 - tan_speed  , \
               rad_speed      )
 
 result += "\n# re-adjust z coordinate\n"
-result += "data modify entity @s Pos[2] set from entity @e[tag=ring_ccw_centre,limit=1] Pos[2]"
+result += "data modify entity @s Pos[2] set from entity @e[type=marker,tag=ring_ccw_centre,limit=1] Pos[2]"
 
 n.write(result)
 n.close()
@@ -191,10 +191,8 @@ path = os.path.join('Monroe-Datapack-Squid-Workshop-1.19.1','data','monroe','fun
 n = open(path, "w+")
 result = ""
 
-result += "summon minecraft:armor_stand ~ ~ ~ {CustomName:\'\"ring_ccw_holder\"\', CustomNameVisible:0,NoGravity:1,Marker:0,Invisible:1,Tags:[\"ring_ccw_holder\"]}\n"
-result += "execute store result score x_holder monroe run data get entity @e[tag=ring_ccw_holder,limit=1] Pos[0] 10000\n"
-result += "execute store result score y_holder monroe run data get entity @e[tag=ring_ccw_holder,limit=1] Pos[1] 10000\n"
-result += "kill @e[tag=ring_ccw_holder]\n\n"
+result += "execute store result score x_holder monroe run data get entity @s Pos[0] 10000\n"
+result += "execute store result score y_holder monroe run data get entity @s Pos[1] 10000\n"
 result += "# x_holder <  x_centre\n"
 result += "execute if score x_holder monroe < x_centre monroe run function monroe:classes/ring_ccw/travel/coords_rot/location_neg\n"
 result += "# x_holder == x_centre &&  y_holder >  y_centre\n"
