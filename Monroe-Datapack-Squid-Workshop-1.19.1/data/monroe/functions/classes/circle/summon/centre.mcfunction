@@ -1,3 +1,1 @@
-# refresh the helper entities
-kill @e[type=minecraft:marker,tag=circle_centre]
-summon minecraft:marker ~ ~ ~ {Tags:["circle_centre"]}
+summon marker ~ ~ ~-0.4375 {Tags:["circle_centre"]}
