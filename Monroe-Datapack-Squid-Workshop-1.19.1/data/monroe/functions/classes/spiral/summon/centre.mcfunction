@@ -1,1 +1,3 @@
-summon armor_stand ~ ~ ~ {CustomName:'"spiral_centre"', CustomNameVisible:1,NoGravity:1,Marker:1,Tags:["spiral_centre"]}
+# refresh the helper entities
+kill @e[type=minecraft:marker,tag=spiral_centre]
+summon minecraft:marker ~ ~ ~ {Tags:["spiral_centre"]}
