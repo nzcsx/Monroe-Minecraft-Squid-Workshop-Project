@@ -35,7 +35,7 @@ import numpy as np
 path = os.path.join('Monroe-Datapack-Squid-Workshop-1.19.1','data','monroe','functions','classes','circle','summon','centre.mcfunction')
 n = open(path, "w+")
 
-result = "summon armor_stand ~ ~ ~-0.4375 {CustomName:\'\"circle_centre\"\', CustomNameVisible:1,NoGravity:1,Marker:1,Tags:[\"circle_centre\"]}"
+result = "summon marker ~ ~ ~-0.4375 {CustomName:\'\"circle_centre\"\', CustomNameVisible:1,NoGravity:1,Marker:1,Tags:[\"circle_centre\"]}"
 
 n.write(result)
 n.close()
