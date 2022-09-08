@@ -109,7 +109,7 @@ result += "# setblock\n"
 for arm_idx in range(0, \
                      num_arm, \
                      1):
-    result += """execute at @s[tag=colour_{}] facing entity @e[type=marker,tag=spiral_centre,limit=1] feet positioned ~ ~0.5 ~ run setblock ~-0.5 ~0.5 ~ {}_wool keep\n""" \
+    result += """execute at @s[tag=colour_{}] facing entity @e[type=marker,tag=spiral_centre,limit=1] feet positioned ~ ~0.5 ~ run setblock ~-0.6 ~0.5 ~ {}_wool keep\n""" \
         .format(  arm_idx % len(colours)             , \
                   colours[ arm_idx % len(colours) ]  )
 
@@ -133,7 +133,7 @@ result += "# setblock\n"
 for arm_idx in range(0, \
                      num_arm, \
                      1):
-    result += """execute at @s[tag=colour_{}] facing entity @e[type=marker,tag=spiral_centre,limit=1] feet positioned ~ ~0.5 ~ run setblock ^ ^0.5 ^0.5 {}_wool keep\n""" \
+    result += """execute at @s[tag=colour_{}] facing entity @e[type=marker,tag=spiral_centre,limit=1] feet positioned ~ ~0.5 ~ run setblock ^ ^0.5 ^0.6 {}_wool keep\n""" \
         .format(  arm_idx % len(colours)             , \
                   colours[ arm_idx % len(colours) ]  )
 
@@ -157,7 +157,7 @@ result += "# setblock\n"
 for arm_idx in range(0, \
                      num_arm, \
                      1):
-    result += """execute at @s[tag=colour_{}] facing entity @e[type=marker,tag=spiral_centre,limit=1] feet positioned ~ ~0.5 ~ run setblock ^ ^-0.5 ^0.5 {}_wool keep\n""" \
+    result += """execute at @s[tag=colour_{}] facing entity @e[type=marker,tag=spiral_centre,limit=1] feet positioned ~ ~0.5 ~ run setblock ^ ^-0.5 ^0.6 {}_wool keep\n""" \
         .format(  arm_idx % len(colours)             , \
                   colours[ arm_idx % len(colours) ]  )
     
@@ -181,7 +181,7 @@ result += "# setblock\n"
 for arm_idx in range(0, \
                      num_arm, \
                      1):
-    result += """execute at @s[tag=colour_{}] facing entity @e[type=marker,tag=spiral_centre,limit=1] feet positioned ~ ~0.5 ~ run setblock ~0.5 ~-0.5 ~ {}_wool keep\n""" \
+    result += """execute at @s[tag=colour_{}] facing entity @e[type=marker,tag=spiral_centre,limit=1] feet positioned ~ ~0.5 ~ run setblock ~0.6 ~-0.5 ~ {}_wool keep\n""" \
         .format(  arm_idx % len(colours)             , \
                   colours[ arm_idx % len(colours) ]  )
 
