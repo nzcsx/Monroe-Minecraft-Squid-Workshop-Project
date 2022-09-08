@@ -10,4 +10,4 @@ execute at @s[tag=colour_5] facing entity @e[type=marker,tag=spiral_centre,limit
 execute at @s facing entity @e[type=marker,tag=spiral_centre,limit=1] feet run tp @s ~-0.1 ~0.1 ~ 0 0
 
 # re-adjust z coordinate
-data modify entity @s Pos[2] merge from entity @e[type=marker,tag=spiral_centre,limit=1] Pos[2]
+execute store result entity @s Pos[2] double 0.0001 run scoreboard players get z_centre_spiral monroe
