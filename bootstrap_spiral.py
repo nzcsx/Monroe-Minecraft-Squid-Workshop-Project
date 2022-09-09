@@ -73,7 +73,7 @@ path = os.path.join('Monroe-Datapack-Squid-Workshop-1.19.1','data','monroe','fun
 n = open(path, "w+")
 
 result = "# travel\n"
-result += "execute as @e[tag=spiral_traveller] run function monroe:classes/spiral/travel/check_location"
+result += "execute as @e[tag=spiral_traveller] at @s facing entity @e[type=marker,tag=spiral_centre,limit=1] feet run function monroe:classes/spiral/travel/check_location"
 
 n.write(result)
 n.close()
@@ -109,12 +109,12 @@ result += "# setblock\n"
 for arm_idx in range(0, \
                      num_arm, \
                      1):
-    result += """execute at @s[tag=colour_{}] facing entity @e[type=marker,tag=spiral_centre,limit=1] feet positioned ~ ~0.5 ~ run setblock ~-0.6 ~0.5 ~ {}_wool keep\n""" \
+    result += """execute if entity @s[tag=colour_{}] positioned ~ ~0.5 ~ run setblock ~-0.6 ~0.5 ~ {}_wool keep\n""" \
         .format(  arm_idx % len(colours)             , \
                   colours[ arm_idx % len(colours) ]  )
 
 result += "\n# move\n"
-result += """execute at @s facing entity @e[type=marker,tag=spiral_centre,limit=1] feet run tp @s ~{} ~{} ~ 0 0\n""" \
+result += """tp @s ~{} ~{} ~ 0 0\n""" \
     .format(  tan_speed      , \
               0 - rad_speed  )
 
@@ -133,12 +133,12 @@ result += "# setblock\n"
 for arm_idx in range(0, \
                      num_arm, \
                      1):
-    result += """execute at @s[tag=colour_{}] facing entity @e[type=marker,tag=spiral_centre,limit=1] feet positioned ~ ~0.5 ~ run setblock ^ ^0.5 ^0.6 {}_wool keep\n""" \
+    result += """execute if entity @s[tag=colour_{}] positioned ~ ~0.5 ~ run setblock ^ ^0.5 ^0.6 {}_wool keep\n""" \
         .format(  arm_idx % len(colours)             , \
                   colours[ arm_idx % len(colours) ]  )
 
 result += "\n# move\n"
-result += """execute at @s facing entity @e[type=marker,tag=spiral_centre,limit=1] feet run tp @s ^ ^{} ^{} 0 0\n""" \
+result += """tp @s ^ ^{} ^{} 0 0\n""" \
     .format(  0 - tan_speed  , \
               0 - rad_speed  )
 
@@ -157,12 +157,12 @@ result += "# setblock\n"
 for arm_idx in range(0, \
                      num_arm, \
                      1):
-    result += """execute at @s[tag=colour_{}] facing entity @e[type=marker,tag=spiral_centre,limit=1] feet positioned ~ ~0.5 ~ run setblock ^ ^-0.5 ^0.6 {}_wool keep\n""" \
+    result += """execute if entity @s[tag=colour_{}] positioned ~ ~0.5 ~ run setblock ^ ^-0.5 ^0.6 {}_wool keep\n""" \
         .format(  arm_idx % len(colours)             , \
                   colours[ arm_idx % len(colours) ]  )
     
 result += "\n# move\n"
-result += """execute at @s facing entity @e[type=marker,tag=spiral_centre,limit=1] feet run tp @s ^ ^{} ^{} 0 0\n""" \
+result += """tp @s ^ ^{} ^{} 0 0\n""" \
     .format(  tan_speed      , \
               0 - rad_speed  )
 
@@ -181,12 +181,12 @@ result += "# setblock\n"
 for arm_idx in range(0, \
                      num_arm, \
                      1):
-    result += """execute at @s[tag=colour_{}] facing entity @e[type=marker,tag=spiral_centre,limit=1] feet positioned ~ ~0.5 ~ run setblock ~0.6 ~-0.5 ~ {}_wool keep\n""" \
+    result += """execute if entity @s[tag=colour_{}] positioned ~ ~0.5 ~ run setblock ~0.6 ~-0.5 ~ {}_wool keep\n""" \
         .format(  arm_idx % len(colours)             , \
                   colours[ arm_idx % len(colours) ]  )
 
 result += "\n# move\n"
-result += """execute at @s facing entity @e[type=marker,tag=spiral_centre,limit=1] feet run tp @s ~{} ~{} ~ 0 0\n""" \
+result += """tp @s ~{} ~{} ~ 0 0\n""" \
     .format(  0 - tan_speed  , \
               rad_speed      )
 

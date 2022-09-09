@@ -35,7 +35,10 @@ import numpy as np
 path = os.path.join('Monroe-Datapack-Squid-Workshop-1.19.1','data','monroe','functions','classes','ring_ccw','summon','centre.mcfunction')
 n = open(path, "w+")
 
-result = "summon minecraft:armor_stand ~ ~ ~ {CustomName:\'\"ring_ccw_centre\"\', CustomNameVisible:1,NoGravity:1,Marker:1,Tags:[\"ring_ccw_centre\"]}"
+result = "summon marker ~ ~ ~ {Tags:[\"ring_ccw_centre\"]}\n"
+result += "execute store result score x_centre_ring_ccw monroe run data get entity @e[type=marker,tag=ring_ccw_centre,limit=1] Pos[0] 10000\n"
+result += "execute store result score y_centre_ring_ccw monroe run data get entity @e[type=marker,tag=ring_ccw_centre,limit=1] Pos[1] 10000\n"
+result += "execute store result score z_centre_ring_ccw monroe run data get entity @e[type=marker,tag=ring_ccw_centre,limit=1] Pos[2] 10000\n\n"
 
 n.write(result)
 n.close()
@@ -70,8 +73,6 @@ path = os.path.join('Monroe-Datapack-Squid-Workshop-1.19.1','data','monroe','fun
 n = open(path, "w+")
 
 result = "# travel\n"
-result += "execute store result score x_centre monroe run data get entity @e[type=marker,tag=ring_ccw_centre,limit=1] Pos[0] 10000\n"
-result += "execute store result score y_centre monroe run data get entity @e[type=marker,tag=ring_ccw_centre,limit=1] Pos[1] 10000\n\n"
 result += "execute as @e[tag=ring_ccw_traveller] run function monroe:classes/ring_ccw/travel/coords_xyz/check_location"
 
 n.write(result)
@@ -88,13 +89,13 @@ result = ""
 result += "execute store result score x_traveller monroe run data get entity @s Pos[0] 10000\n"
 result += "execute store result score y_traveller monroe run data get entity @s Pos[1] 10000\n\n"
 result += "# x_traveller <  x_centre\n"
-result += "execute if score x_traveller monroe < x_centre monroe run function monroe:classes/ring_ccw/travel/coords_xyz/location_neg\n"
+result += "execute if score x_traveller monroe < x_centre_ring_ccw monroe run function monroe:classes/ring_ccw/travel/coords_xyz/location_neg\n"
 result += "# x_traveller == x_centre &&  y_travaller >  y_centre\n"
-result += "execute if score x_traveller monroe = x_centre monroe if score y_traveller monroe > y_centre monroe run function monroe:classes/ring_ccw/travel/coords_xyz/location_upp\n"
+result += "execute if score x_traveller monroe = x_centre_ring_ccw monroe if score y_traveller monroe > y_centre_ring_ccw monroe run function monroe:classes/ring_ccw/travel/coords_xyz/location_upp\n"
 result += "# x_traveller >  x_centre\n"
-result += "execute if score x_traveller monroe > x_centre monroe run function monroe:classes/ring_ccw/travel/coords_xyz/location_pos\n"
+result += "execute if score x_traveller monroe > x_centre_ring_ccw monroe run function monroe:classes/ring_ccw/travel/coords_xyz/location_pos\n"
 result += "# x_traveller == x_centre && y_travaller <  y_centre\n"
-result += "execute if score x_traveller monroe = x_centre monroe if score y_traveller monroe < y_centre monroe run function monroe:classes/ring_ccw/travel/coords_xyz/location_low"
+result += "execute if score x_traveller monroe = x_centre_ring_ccw monroe if score y_traveller monroe < y_centre_ring_ccw monroe run function monroe:classes/ring_ccw/travel/coords_xyz/location_low"
 
 n.write(result)
 n.close()
@@ -115,7 +116,7 @@ result += """execute at @s facing entity @e[type=marker,tag=ring_ccw_centre,limi
               0 - rad_speed  )
 
 result += "\n# re-adjust z coordinate\n"
-result += "data modify entity @s Pos[2] set from entity @e[type=marker,tag=ring_ccw_centre,limit=1] Pos[2]"
+result += "execute store result entity @s Pos[2] double 0.0001 run scoreboard players get z_centre_ring_ccw monroe"
 
 n.write(result)
 n.close()
@@ -136,7 +137,7 @@ result += """execute at @s facing entity @e[type=marker,tag=ring_ccw_centre,limi
               0 - rad_speed  )
 
 result += "\n# re-adjust z coordinate\n"
-result += "data modify entity @s Pos[2] set from entity @e[type=marker,tag=ring_ccw_centre,limit=1] Pos[2]"
+result += "execute store result entity @s Pos[2] double 0.0001 run scoreboard players get z_centre_ring_ccw monroe"
 
 n.write(result)
 n.close()
@@ -157,7 +158,7 @@ result += """execute at @s facing entity @e[type=marker,tag=ring_ccw_centre,limi
               0 - rad_speed  )
 
 result += "\n# re-adjust z coordinate\n"
-result += "data modify entity @s Pos[2] set from entity @e[type=marker,tag=ring_ccw_centre,limit=1] Pos[2]"
+result += "execute store result entity @s Pos[2] double 0.0001 run scoreboard players get z_centre_ring_ccw monroe"
 
 n.write(result)
 n.close()
@@ -178,7 +179,7 @@ result += """execute at @s facing entity @e[type=marker,tag=ring_ccw_centre,limi
               rad_speed      )
 
 result += "\n# re-adjust z coordinate\n"
-result += "data modify entity @s Pos[2] set from entity @e[type=marker,tag=ring_ccw_centre,limit=1] Pos[2]"
+result += "execute store result entity @s Pos[2] double 0.0001 run scoreboard players get z_centre_ring_ccw monroe"
 
 n.write(result)
 n.close()
@@ -192,15 +193,15 @@ n = open(path, "w+")
 result = ""
 
 result += "execute store result score x_holder monroe run data get entity @s Pos[0] 10000\n"
-result += "execute store result score y_holder monroe run data get entity @s Pos[1] 10000\n"
+result += "execute store result score y_holder monroe run data get entity @s Pos[1] 10000\n\n"
 result += "# x_holder <  x_centre\n"
-result += "execute if score x_holder monroe < x_centre monroe run function monroe:classes/ring_ccw/travel/coords_rot/location_neg\n"
+result += "execute if score x_holder monroe < x_centre_ring_ccw monroe run function monroe:classes/ring_ccw/travel/coords_rot/location_neg\n"
 result += "# x_holder == x_centre &&  y_holder >  y_centre\n"
-result += "execute if score x_holder monroe = x_centre monroe if score y_holder monroe > y_centre monroe run function monroe:classes/ring_ccw/travel/coords_rot/location_upp\n"
+result += "execute if score x_holder monroe = x_centre_ring_ccw monroe if score y_holder monroe > y_centre_ring_ccw monroe run function monroe:classes/ring_ccw/travel/coords_rot/location_upp\n"
 result += "# x_holder >  x_centre\n"
-result += "execute if score x_holder monroe > x_centre monroe run function monroe:classes/ring_ccw/travel/coords_rot/location_pos\n"
+result += "execute if score x_holder monroe > x_centre_ring_ccw monroe run function monroe:classes/ring_ccw/travel/coords_rot/location_pos\n"
 result += "# x_holder == x_centre && y_holder <  y_centre\n"
-result += "execute if score x_holder monroe = x_centre monroe if score y_holder monroe < y_centre monroe run function monroe:classes/ring_ccw/travel/coords_rot/location_low"
+result += "execute if score x_holder monroe = x_centre_ring_ccw monroe if score y_holder monroe < y_centre_ring_ccw monroe run function monroe:classes/ring_ccw/travel/coords_rot/location_low"
 
 n.write(result)
 n.close()
@@ -244,4 +245,4 @@ n.close()
 
 
 # done
-print('ring_ccw: done!')
+print('Ring_ccw: done!')
