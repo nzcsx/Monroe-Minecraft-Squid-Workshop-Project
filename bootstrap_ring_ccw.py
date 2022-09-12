@@ -73,7 +73,7 @@ path = os.path.join('Monroe-Datapack-Squid-Workshop-1.19.1','data','monroe','fun
 n = open(path, "w+")
 
 result = "# travel\n"
-result += "execute as @e[tag=ring_ccw_traveller] run function monroe:classes/ring_ccw/travel/coords_xyz/check_location"
+result += "execute as @e[tag=ring_ccw_traveller] at @s facing entity @e[type=marker,tag=ring_ccw_centre,limit=1] feet run function monroe:classes/ring_ccw/travel/coords_xyz/check_location"
 
 n.write(result)
 n.close()
@@ -106,12 +106,12 @@ n = open(path, "w+")
 result = ""
 
 result += "# move coordinates\n"
-result += """execute at @s facing entity @e[type=marker,tag=ring_ccw_centre,limit=1] feet positioned ^ ^{} ^{} facing entity @e[type=marker,tag=ring_ccw_centre,limit=1] feet run tp @s ~ ~ ~ 0 ~\n""" \
+result += """execute positioned ~{} ~{} ~ facing entity @e[type=marker,tag=ring_ccw_centre,limit=1] feet run tp @s ~ ~ ~ 0 ~\n""" \
     .format(  tan_speed      , \
               0 - rad_speed  )
 
 result += "\n# move poses\n"
-result += """execute at @s facing entity @e[type=marker,tag=ring_ccw_centre,limit=1] feet positioned ^ ^{} ^{} run function monroe:classes/ring_ccw/travel/coords_rot/check_location\n""" \
+result += """execute at @s run function monroe:classes/ring_ccw/travel/coords_rot/check_location\n""" \
     .format(  tan_speed      , \
               0 - rad_speed  )
 
@@ -127,12 +127,12 @@ n = open(path, "w+")
 result = ""
 
 result += "\n# move coordinates\n"
-result += """execute at @s facing entity @e[type=marker,tag=ring_ccw_centre,limit=1] feet positioned ^ ^{} ^{} facing entity @e[type=marker,tag=ring_ccw_centre,limit=1] feet run tp @s ~ ~ ~ 0 ~\n""" \
+result += """execute positioned ^ ^{} ^{} facing entity @e[type=marker,tag=ring_ccw_centre,limit=1] feet run tp @s ~ ~ ~ 0 ~\n""" \
     .format(  0 - tan_speed  , \
               0 - rad_speed  )
 
 result += "\n# move poses\n"
-result += """execute at @s facing entity @e[type=marker,tag=ring_ccw_centre,limit=1] feet positioned ^ ^{} ^{} run function monroe:classes/ring_ccw/travel/coords_rot/check_location\n""" \
+result += """execute at @s run function monroe:classes/ring_ccw/travel/coords_rot/check_location\n""" \
     .format(  0 - tan_speed  , \
               0 - rad_speed  )
 
@@ -148,12 +148,12 @@ n = open(path, "w+")
 result = ""
     
 result += "\n# move coordinates\n"
-result += """execute at @s facing entity @e[type=marker,tag=ring_ccw_centre,limit=1] feet positioned ^ ^{} ^{} facing entity @e[type=marker,tag=ring_ccw_centre,limit=1] feet run tp @s ~ ~ ~ 0 ~\n""" \
+result += """execute positioned ^ ^{} ^{} facing entity @e[type=marker,tag=ring_ccw_centre,limit=1] feet run tp @s ~ ~ ~ 0 ~\n""" \
     .format(  tan_speed      , \
               0 - rad_speed  )
 
 result += "\n# move poses\n"
-result += """execute at @s facing entity @e[type=marker,tag=ring_ccw_centre,limit=1] feet positioned ^ ^{} ^{} run function monroe:classes/ring_ccw/travel/coords_rot/check_location\n""" \
+result += """execute at @s run function monroe:classes/ring_ccw/travel/coords_rot/check_location\n""" \
     .format(  tan_speed      , \
               0 - rad_speed  )
 
@@ -169,12 +169,12 @@ n = open(path, "w+")
 result = ""
 
 result += "\n# move coordinates\n"
-result += """execute at @s facing entity @e[type=marker,tag=ring_ccw_centre,limit=1] feet positioned ^ ^{} ^{} facing entity @e[type=marker,tag=ring_ccw_centre,limit=1] feet run tp @s ~ ~ ~ 0 ~\n""" \
+result += """execute positioned ~{} ~{} ~ facing entity @e[type=marker,tag=ring_ccw_centre,limit=1] feet run tp @s ~ ~ ~ 0 ~\n""" \
     .format(  0 - tan_speed  , \
               rad_speed      )
 
 result += "\n# move poses\n"
-result += """execute at @s facing entity @e[type=marker,tag=ring_ccw_centre,limit=1] feet positioned ^ ^{} ^{} run function monroe:classes/ring_ccw/travel/coords_rot/check_location\n""" \
+result += """execute at @s run function monroe:classes/ring_ccw/travel/coords_rot/check_location\n""" \
     .format(  0 - tan_speed  , \
               rad_speed      )
 
@@ -196,11 +196,11 @@ result += "execute store result score x_holder monroe run data get entity @s Pos
 result += "execute store result score y_holder monroe run data get entity @s Pos[1] 10000\n\n"
 result += "# x_holder <  x_centre\n"
 result += "execute if score x_holder monroe < x_centre_ring_ccw monroe run function monroe:classes/ring_ccw/travel/coords_rot/location_neg\n"
-result += "# x_holder == x_centre &&  y_holder >  y_centre\n"
+result += "# x_holder == x_centre &&  y_travaller >  y_centre\n"
 result += "execute if score x_holder monroe = x_centre_ring_ccw monroe if score y_holder monroe > y_centre_ring_ccw monroe run function monroe:classes/ring_ccw/travel/coords_rot/location_upp\n"
 result += "# x_holder >  x_centre\n"
 result += "execute if score x_holder monroe > x_centre_ring_ccw monroe run function monroe:classes/ring_ccw/travel/coords_rot/location_pos\n"
-result += "# x_holder == x_centre && y_holder <  y_centre\n"
+result += "# x_holder == x_centre && y_travaller <  y_centre\n"
 result += "execute if score x_holder monroe = x_centre_ring_ccw monroe if score y_holder monroe < y_centre_ring_ccw monroe run function monroe:classes/ring_ccw/travel/coords_rot/location_low"
 
 n.write(result)
