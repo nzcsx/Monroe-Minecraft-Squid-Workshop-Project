@@ -27,6 +27,20 @@ tan_speed = 0.75
 import math
 import os.path
 import numpy as np
+import shutil
+
+
+
+# Make dir structure
+path = os.path.join('Monroe-Datapack-Squid-Workshop-1.19.1','data','monroe','functions','classes','ring_ccw')
+if os.path.isdir(path):
+    shutil.rmtree(path)
+
+os.mkdir(os.path.join(path))
+os.mkdir(os.path.join(path,'summon'))
+os.mkdir(os.path.join(path,'travel'))
+os.mkdir(os.path.join(path,'travel','coords'))
+os.mkdir(os.path.join(path,'travel','poses'))
 
 
 
@@ -73,35 +87,35 @@ path = os.path.join('Monroe-Datapack-Squid-Workshop-1.19.1','data','monroe','fun
 n = open(path, "w+")
 
 result = "# travel\n"
-result += "execute as @e[tag=ring_ccw_traveller] at @s facing entity @e[type=marker,tag=ring_ccw_centre,limit=1] feet run function monroe:classes/ring_ccw/travel/coords_xyz/check_location"
+result += "execute as @e[tag=ring_ccw_traveller] at @s facing entity @e[type=marker,tag=ring_ccw_centre,limit=1] feet run function monroe:classes/ring_ccw/travel/coords/check_location"
 
 n.write(result)
 n.close()
 
 
 
-# travel/coords_xyz/
+# travel/coords/
 # # check_location
-path = os.path.join('Monroe-Datapack-Squid-Workshop-1.19.1','data','monroe','functions','classes','ring_ccw','travel','coords_xyz','check_location.mcfunction')
+path = os.path.join('Monroe-Datapack-Squid-Workshop-1.19.1','data','monroe','functions','classes','ring_ccw','travel','coords','check_location.mcfunction')
 n = open(path, "w+")
 result = ""
 
 result += "execute store result score x_traveller monroe run data get entity @s Pos[0] 10000\n"
 result += "execute store result score y_traveller monroe run data get entity @s Pos[1] 10000\n\n"
 result += "# x_traveller <  x_centre\n"
-result += "execute if score x_traveller monroe < x_centre_ring_ccw monroe run function monroe:classes/ring_ccw/travel/coords_xyz/location_neg\n"
+result += "execute if score x_traveller monroe < x_centre_ring_ccw monroe run function monroe:classes/ring_ccw/travel/coords/location_neg\n"
 result += "# x_traveller == x_centre &&  y_travaller >  y_centre\n"
-result += "execute if score x_traveller monroe = x_centre_ring_ccw monroe if score y_traveller monroe > y_centre_ring_ccw monroe run function monroe:classes/ring_ccw/travel/coords_xyz/location_upp\n"
+result += "execute if score x_traveller monroe = x_centre_ring_ccw monroe if score y_traveller monroe > y_centre_ring_ccw monroe run function monroe:classes/ring_ccw/travel/coords/location_upp\n"
 result += "# x_traveller >  x_centre\n"
-result += "execute if score x_traveller monroe > x_centre_ring_ccw monroe run function monroe:classes/ring_ccw/travel/coords_xyz/location_pos\n"
+result += "execute if score x_traveller monroe > x_centre_ring_ccw monroe run function monroe:classes/ring_ccw/travel/coords/location_pos\n"
 result += "# x_traveller == x_centre && y_travaller <  y_centre\n"
-result += "execute if score x_traveller monroe = x_centre_ring_ccw monroe if score y_traveller monroe < y_centre_ring_ccw monroe run function monroe:classes/ring_ccw/travel/coords_xyz/location_low"
+result += "execute if score x_traveller monroe = x_centre_ring_ccw monroe if score y_traveller monroe < y_centre_ring_ccw monroe run function monroe:classes/ring_ccw/travel/coords/location_low"
 
 n.write(result)
 n.close()
 
 # # location_low
-path = os.path.join('Monroe-Datapack-Squid-Workshop-1.19.1','data','monroe','functions','classes','ring_ccw','travel','coords_xyz','location_low.mcfunction')
+path = os.path.join('Monroe-Datapack-Squid-Workshop-1.19.1','data','monroe','functions','classes','ring_ccw','travel','coords','location_low.mcfunction')
 n = open(path, "w+")
 result = ""
 
@@ -111,7 +125,7 @@ result += """execute positioned ~{} ~{} ~ facing entity @e[type=marker,tag=ring_
               0 - rad_speed  )
 
 result += "\n# move poses\n"
-result += """execute at @s run function monroe:classes/ring_ccw/travel/coords_rot/check_location\n""" \
+result += """execute at @s run function monroe:classes/ring_ccw/travel/poses/check_location\n""" \
     .format(  tan_speed      , \
               0 - rad_speed  )
 
@@ -122,7 +136,7 @@ n.write(result)
 n.close()
 
 # # location_neg
-path = os.path.join('Monroe-Datapack-Squid-Workshop-1.19.1','data','monroe','functions','classes','ring_ccw','travel','coords_xyz','location_neg.mcfunction')
+path = os.path.join('Monroe-Datapack-Squid-Workshop-1.19.1','data','monroe','functions','classes','ring_ccw','travel','coords','location_neg.mcfunction')
 n = open(path, "w+")
 result = ""
 
@@ -132,7 +146,7 @@ result += """execute positioned ^ ^{} ^{} facing entity @e[type=marker,tag=ring_
               0 - rad_speed  )
 
 result += "\n# move poses\n"
-result += """execute at @s run function monroe:classes/ring_ccw/travel/coords_rot/check_location\n""" \
+result += """execute at @s run function monroe:classes/ring_ccw/travel/poses/check_location\n""" \
     .format(  0 - tan_speed  , \
               0 - rad_speed  )
 
@@ -143,7 +157,7 @@ n.write(result)
 n.close()
 
 # # location_pos
-path = os.path.join('Monroe-Datapack-Squid-Workshop-1.19.1','data','monroe','functions','classes','ring_ccw','travel','coords_xyz','location_pos.mcfunction')
+path = os.path.join('Monroe-Datapack-Squid-Workshop-1.19.1','data','monroe','functions','classes','ring_ccw','travel','coords','location_pos.mcfunction')
 n = open(path, "w+")
 result = ""
     
@@ -153,7 +167,7 @@ result += """execute positioned ^ ^{} ^{} facing entity @e[type=marker,tag=ring_
               0 - rad_speed  )
 
 result += "\n# move poses\n"
-result += """execute at @s run function monroe:classes/ring_ccw/travel/coords_rot/check_location\n""" \
+result += """execute at @s run function monroe:classes/ring_ccw/travel/poses/check_location\n""" \
     .format(  tan_speed      , \
               0 - rad_speed  )
 
@@ -164,7 +178,7 @@ n.write(result)
 n.close()
 
 # # location_upp
-path = os.path.join('Monroe-Datapack-Squid-Workshop-1.19.1','data','monroe','functions','classes','ring_ccw','travel','coords_xyz','location_upp.mcfunction')
+path = os.path.join('Monroe-Datapack-Squid-Workshop-1.19.1','data','monroe','functions','classes','ring_ccw','travel','coords','location_upp.mcfunction')
 n = open(path, "w+")
 result = ""
 
@@ -174,7 +188,7 @@ result += """execute positioned ~{} ~{} ~ facing entity @e[type=marker,tag=ring_
               rad_speed      )
 
 result += "\n# move poses\n"
-result += """execute at @s run function monroe:classes/ring_ccw/travel/coords_rot/check_location\n""" \
+result += """execute at @s run function monroe:classes/ring_ccw/travel/poses/check_location\n""" \
     .format(  0 - tan_speed  , \
               rad_speed      )
 
@@ -186,28 +200,28 @@ n.close()
 
 
 
-# travel/coords_rot/
+# travel/poses/
 # # check_location
-path = os.path.join('Monroe-Datapack-Squid-Workshop-1.19.1','data','monroe','functions','classes','ring_ccw','travel','coords_rot','check_location.mcfunction')
+path = os.path.join('Monroe-Datapack-Squid-Workshop-1.19.1','data','monroe','functions','classes','ring_ccw','travel','poses','check_location.mcfunction')
 n = open(path, "w+")
 result = ""
 
 result += "execute store result score x_holder monroe run data get entity @s Pos[0] 10000\n"
 result += "execute store result score y_holder monroe run data get entity @s Pos[1] 10000\n\n"
 result += "# x_holder <  x_centre\n"
-result += "execute if score x_holder monroe < x_centre_ring_ccw monroe run function monroe:classes/ring_ccw/travel/coords_rot/location_neg\n"
+result += "execute if score x_holder monroe < x_centre_ring_ccw monroe run function monroe:classes/ring_ccw/travel/poses/location_neg\n"
 result += "# x_holder == x_centre &&  y_travaller >  y_centre\n"
-result += "execute if score x_holder monroe = x_centre_ring_ccw monroe if score y_holder monroe > y_centre_ring_ccw monroe run function monroe:classes/ring_ccw/travel/coords_rot/location_upp\n"
+result += "execute if score x_holder monroe = x_centre_ring_ccw monroe if score y_holder monroe > y_centre_ring_ccw monroe run function monroe:classes/ring_ccw/travel/poses/location_upp\n"
 result += "# x_holder >  x_centre\n"
-result += "execute if score x_holder monroe > x_centre_ring_ccw monroe run function monroe:classes/ring_ccw/travel/coords_rot/location_pos\n"
+result += "execute if score x_holder monroe > x_centre_ring_ccw monroe run function monroe:classes/ring_ccw/travel/poses/location_pos\n"
 result += "# x_holder == x_centre && y_travaller <  y_centre\n"
-result += "execute if score x_holder monroe = x_centre_ring_ccw monroe if score y_holder monroe < y_centre_ring_ccw monroe run function monroe:classes/ring_ccw/travel/coords_rot/location_low"
+result += "execute if score x_holder monroe = x_centre_ring_ccw monroe if score y_holder monroe < y_centre_ring_ccw monroe run function monroe:classes/ring_ccw/travel/poses/location_low"
 
 n.write(result)
 n.close()
 
 # # location_low
-path = os.path.join('Monroe-Datapack-Squid-Workshop-1.19.1','data','monroe','functions','classes','ring_ccw','travel','coords_rot','location_low.mcfunction')
+path = os.path.join('Monroe-Datapack-Squid-Workshop-1.19.1','data','monroe','functions','classes','ring_ccw','travel','poses','location_low.mcfunction')
 n = open(path, "w+")
 
 result = "data modify entity @s Pose.Head[2] set value -90f\n"
@@ -216,7 +230,7 @@ n.write(result)
 n.close()
 
 # # location_neg
-path = os.path.join('Monroe-Datapack-Squid-Workshop-1.19.1','data','monroe','functions','classes','ring_ccw','travel','coords_rot','location_neg.mcfunction')
+path = os.path.join('Monroe-Datapack-Squid-Workshop-1.19.1','data','monroe','functions','classes','ring_ccw','travel','poses','location_neg.mcfunction')
 n = open(path, "w+")
 
 result = "execute store result entity @s Pose.Head[2] float 1 run data get entity @s Rotation[1]"
@@ -225,7 +239,7 @@ n.write(result)
 n.close()
 
 # # location_pos
-path = os.path.join('Monroe-Datapack-Squid-Workshop-1.19.1','data','monroe','functions','classes','ring_ccw','travel','coords_rot','location_pos.mcfunction')
+path = os.path.join('Monroe-Datapack-Squid-Workshop-1.19.1','data','monroe','functions','classes','ring_ccw','travel','poses','location_pos.mcfunction')
 n = open(path, "w+")
 
 result = "execute store result entity @s Pose.Head[2] float -1 run data get entity @s Rotation[1]"
@@ -234,7 +248,7 @@ n.write(result)
 n.close()
 
 # # location_upp
-path = os.path.join('Monroe-Datapack-Squid-Workshop-1.19.1','data','monroe','functions','classes','ring_ccw','travel','coords_rot','location_upp.mcfunction')
+path = os.path.join('Monroe-Datapack-Squid-Workshop-1.19.1','data','monroe','functions','classes','ring_ccw','travel','poses','location_upp.mcfunction')
 n = open(path, "w+")
 
 result = "data modify entity @s Pose.Head[2] set value 90f\n"

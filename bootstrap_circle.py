@@ -33,7 +33,7 @@ import shutil
 
 # Make dir structure
 path = os.path.join('Monroe-Datapack-Squid-Workshop-1.19.1','data','monroe','functions','classes','circle')
-if os. path. isdir(path):
+if os.path.isdir(path):
     shutil.rmtree(path)
 
 os.mkdir(os.path.join(path))
