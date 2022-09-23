@@ -1,6 +1,6 @@
 {
  "pack": {
- "pack_format": 7,
- "description": "Bools data pack made by Squid Workshop. Find more on https://github.com/Squid-Workshop/MinecraftDatapacksProject"
+ "pack_format": 10,
+ "description": "Monroe data pack made by Squid Workshop. Find more on https://github.com/nzcsx/Monroe-Minecraft-Squid-Workshop-Project"
  }
 }
