@@ -72,10 +72,10 @@ else:
     result += "function monroe:classes/circle/travel/tick\n"
 
 if (ring_ccw_delay):
-    result += """execute if score tick monroe matches 288.. run function monroe:classes/circle/travel/tick\n"""\
+    result += """execute if score tick monroe matches 288.. run function monroe:classes/ring_ccw/travel/tick\n"""\
         .format(ring_ccw_delay) 
 else:
-    result += "function monroe:classes/circle/travel/tick\n"
+    result += "function monroe:classes/ring_ccw/travel/tick\n"
 
 result += "scoreboard players add tick monroe 1"
 
