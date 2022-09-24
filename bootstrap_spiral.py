@@ -55,8 +55,8 @@ result += "execute store result score z_centre_spiral monroe run data get entity
 n.write(result)
 n.close()
 
-# # traveller
-path = os.path.join('Monroe-Datapack-Squid-Workshop-1.19.1','data','monroe','functions','classes','spiral','summon','traveller.mcfunction')
+# # travellers
+path = os.path.join('Monroe-Datapack-Squid-Workshop-1.19.1','data','monroe','functions','classes','spiral','summon','travellers.mcfunction')
 n = open(path, "w+")
 result = ""
 

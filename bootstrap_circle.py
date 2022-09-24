@@ -52,8 +52,8 @@ result = "summon marker ~ ~ ~-0.4375 {Tags:[\"circle_centre\"]}"
 n.write(result)
 n.close()
 
-# # traveller
-path = os.path.join('Monroe-Datapack-Squid-Workshop-1.19.1','data','monroe','functions','classes','circle','summon','traveller.mcfunction')
+# # travellers
+path = os.path.join('Monroe-Datapack-Squid-Workshop-1.19.1','data','monroe','functions','classes','circle','summon','travellers.mcfunction')
 n = open(path, "w+")
 result = ""
 

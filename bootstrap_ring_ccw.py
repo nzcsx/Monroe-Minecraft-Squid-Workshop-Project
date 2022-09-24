@@ -57,8 +57,8 @@ result += "execute store result score z_centre_ring_ccw monroe run data get enti
 n.write(result)
 n.close()
 
-# # traveller
-path = os.path.join('Monroe-Datapack-Squid-Workshop-1.19.1','data','monroe','functions','classes','ring_ccw','summon','traveller.mcfunction')
+# # travellers
+path = os.path.join('Monroe-Datapack-Squid-Workshop-1.19.1','data','monroe','functions','classes','ring_ccw','summon','travellers.mcfunction')
 n = open(path, "w+")
 result = ""
 
