@@ -22,15 +22,15 @@ import shutil
 
 
 # Make dir structure
-path = os.path.join('Monroe-Datapack-Squid-Workshop-1.19.1','data','monroe','functions','classes','event_manager')
+path = os.path.join('Monroe-Datapack-Squid-Workshop-1.19.1','data','app','functions','monroe_event_manager')
 if os.path.isdir(path):
     shutil.rmtree(path)
-os.mkdir(os.path.join(path))
+os.makedirs(path)
 
 
 
 # summon
-path = os.path.join('Monroe-Datapack-Squid-Workshop-1.19.1','data','monroe','functions','classes','event_manager','summon.mcfunction')
+path = os.path.join('Monroe-Datapack-Squid-Workshop-1.19.1','data','app','functions','monroe_event_manager','summon.mcfunction')
 n = open(path, "w+")
 result = ""
 
@@ -55,7 +55,7 @@ n.close()
 
 
 # tick
-path = os.path.join('Monroe-Datapack-Squid-Workshop-1.19.1','data','monroe','functions','classes','event_manager','tick.mcfunction')
+path = os.path.join('Monroe-Datapack-Squid-Workshop-1.19.1','data','app','functions','monroe_event_manager','tick.mcfunction')
 n = open(path, "w+")
 result = ""
 
