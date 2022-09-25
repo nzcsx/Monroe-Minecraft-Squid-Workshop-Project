@@ -11,7 +11,7 @@ rad_init = 6
 ang_res = 2.5
 
 # Total amount of blocks in the arm width = 2 * half_num_blocks + 1
-half_num_blks = 1
+half_num_blks = 2
 
 # Colours across the arms
 colours = ['orange', 'light_blue', 'pink', 'yellow', 'red', 'lime', 'magenta', 'cyan','white']
