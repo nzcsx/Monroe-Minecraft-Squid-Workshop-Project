@@ -84,5 +84,16 @@ n.close()
 
 
 
+# reload
+path = os.path.join('Monroe-Datapack-Squid-Workshop-1.19.1','data','app','functions','monroe_event_manager','reload.mcfunction')
+n = open(path, "w+")
+
+result = "function monroe:classes/main/load"
+
+n.write(result)
+n.close()
+
+
+
 # done
 print('Event_manager: done!')

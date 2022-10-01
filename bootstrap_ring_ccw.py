@@ -2,7 +2,7 @@
 # Configure the ring_ccw arms here 
 
 # Number of arms
-num_arm = 40
+num_arm = 20
 
 # Starting radius from the centre
 rad_init = 6
@@ -11,14 +11,14 @@ rad_init = 6
 ang_res = 2.5
 
 # Total amount of blocks in the arm width = 2 * half_num_blocks + 1
-half_num_blks = 2
+half_num_blks = 3
 
 # Colours across the arms
 colours = ['orange', 'light_blue', 'pink', 'yellow', 'red', 'lime', 'magenta', 'cyan','white']
 
 # Speed of extension
-rad_speed = -0.02
-tan_speed = 0.75
+rad_speed = -0.01
+tan_speed = 0.5
 #
 # ################################
 
