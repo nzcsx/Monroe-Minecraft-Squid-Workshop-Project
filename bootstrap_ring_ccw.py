@@ -235,7 +235,7 @@ n = open(path, "w+")
 
 result =  "execute store result score r_holder monroe run data get entity @s Rotation[1] 10000\n"
 result += "scoreboard players add r_holder monroe 90000\n"
-result += "execute store result entity @s Pose.Head[2] float 0.0001 run scoreboard players get r_holder_pos monroe"
+result += "execute store result entity @s Pose.Head[2] float 0.0001 run scoreboard players get r_holder monroe"
 
 n.write(result)
 n.close()
@@ -246,7 +246,7 @@ n = open(path, "w+")
 
 result =  "execute store result score r_holder monroe run data get entity @s Rotation[1] -10000\n"
 result += "scoreboard players add r_holder monroe 90000\n"
-result += "execute store result entity @s Pose.Head[2] float 0.0001 run scoreboard players get r_holder_neg monroe"
+result += "execute store result entity @s Pose.Head[2] float 0.0001 run scoreboard players get r_holder monroe"
 
 n.write(result)
 n.close()
