@@ -215,13 +215,7 @@ result += "execute if score x_holder monroe = x_centre_ring_ccw monroe if score 
 result += "# x_holder >  x_centre\n"
 result += "execute if score x_holder monroe > x_centre_ring_ccw monroe run function monroe:classes/ring_ccw/travel/poses/location_pos\n"
 result += "# x_holder == x_centre && y_travaller <  y_centre\n"
-result += "execute if score x_holder monroe = x_centre_ring_ccw monroe if score y_holder monroe < y_centre_ring_ccw monroe run function monroe:classes/ring_ccw/travel/poses/location_low\n\n"
-
-result += "execute store result score r_holder_pos monroe run data get entity @s Rotation[1] 10000\n"
-result += "scoreboard players add r_holder_pos monroe 90000\n"
-result += "execute store result score r_holder_neg monroe run data get entity @s Rotation[1] -10000"
-result += "scoreboard players add r_holder_neg monroe 90000\n"
-
+result += "execute if score x_holder monroe = x_centre_ring_ccw monroe if score y_holder monroe < y_centre_ring_ccw monroe run function monroe:classes/ring_ccw/travel/poses/location_low"
 
 n.write(result)
 n.close()
@@ -239,7 +233,9 @@ n.close()
 path = os.path.join('Monroe-Datapack-Squid-Workshop-1.19.1','data','monroe','functions','classes','ring_ccw','travel','poses','location_neg.mcfunction')
 n = open(path, "w+")
 
-result = "execute store result entity @s Pose.Head[2] float 1 run data get entity @s Rotation[1]"
+result =  "execute store result score r_holder monroe run data get entity @s Rotation[1] 10000\n"
+result += "scoreboard players add r_holder monroe 90000\n"
+result += "execute store result entity @s Pose.Head[2] float 0.0001 run scoreboard players get r_holder_pos monroe"
 
 n.write(result)
 n.close()
@@ -248,7 +244,9 @@ n.close()
 path = os.path.join('Monroe-Datapack-Squid-Workshop-1.19.1','data','monroe','functions','classes','ring_ccw','travel','poses','location_pos.mcfunction')
 n = open(path, "w+")
 
-result = "execute store result entity @s Pose.Head[2] float -1 run data get entity @s Rotation[1]"
+result =  "execute store result score r_holder monroe run data get entity @s Rotation[1] -10000\n"
+result += "scoreboard players add r_holder monroe 90000\n"
+result += "execute store result entity @s Pose.Head[2] float 0.0001 run scoreboard players get r_holder_neg monroe"
 
 n.write(result)
 n.close()
