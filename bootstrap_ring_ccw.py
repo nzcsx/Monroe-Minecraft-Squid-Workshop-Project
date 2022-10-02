@@ -233,7 +233,9 @@ n.close()
 path = os.path.join('Monroe-Datapack-Squid-Workshop-1.19.1','data','monroe','functions','classes','ring_ccw','travel','poses','location_neg.mcfunction')
 n = open(path, "w+")
 
-result = "execute store result entity @s Pose.Head[2] float 1 run data get entity @s Rotation[1]"
+result =  "execute store result score r_holder monroe run data get entity @s Rotation[1] 10000\n"
+result += "scoreboard players add r_holder monroe 90000\n"
+result += "execute store result entity @s Pose.Head[2] float 0.0001 run scoreboard players get r_holder monroe"
 
 n.write(result)
 n.close()
@@ -242,7 +244,9 @@ n.close()
 path = os.path.join('Monroe-Datapack-Squid-Workshop-1.19.1','data','monroe','functions','classes','ring_ccw','travel','poses','location_pos.mcfunction')
 n = open(path, "w+")
 
-result = "execute store result entity @s Pose.Head[2] float -1 run data get entity @s Rotation[1]"
+result =  "execute store result score r_holder monroe run data get entity @s Rotation[1] -10000\n"
+result += "scoreboard players add r_holder monroe 90000\n"
+result += "execute store result entity @s Pose.Head[2] float 0.0001 run scoreboard players get r_holder monroe"
 
 n.write(result)
 n.close()

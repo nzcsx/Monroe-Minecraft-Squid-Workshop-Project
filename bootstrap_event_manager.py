@@ -7,7 +7,7 @@ ring_ccw_center = "0.5 28.5 90.5"
 
 spiral_delay = 0
 circle_delay = 256
-ring_ccw_delay = 288
+ring_ccw_delay = 0 #288
 
 #
 # ################################

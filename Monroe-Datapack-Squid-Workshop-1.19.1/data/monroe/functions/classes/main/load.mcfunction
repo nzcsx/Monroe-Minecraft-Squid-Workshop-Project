@@ -17,6 +17,7 @@ scoreboard players set y_traveller monroe 0
 
 scoreboard players set x_holder monroe 0
 scoreboard players set y_holder monroe 0
+scoreboard players set r_holder monroe 0
 
 scoreboard players set tick monroe 0
 
