@@ -215,7 +215,13 @@ result += "execute if score x_holder monroe = x_centre_ring_ccw monroe if score 
 result += "# x_holder >  x_centre\n"
 result += "execute if score x_holder monroe > x_centre_ring_ccw monroe run function monroe:classes/ring_ccw/travel/poses/location_pos\n"
 result += "# x_holder == x_centre && y_travaller <  y_centre\n"
-result += "execute if score x_holder monroe = x_centre_ring_ccw monroe if score y_holder monroe < y_centre_ring_ccw monroe run function monroe:classes/ring_ccw/travel/poses/location_low"
+result += "execute if score x_holder monroe = x_centre_ring_ccw monroe if score y_holder monroe < y_centre_ring_ccw monroe run function monroe:classes/ring_ccw/travel/poses/location_low\n\n"
+
+result += "execute store result score r_holder_pos monroe run data get entity @s Rotation[1] 10000\n"
+result += "scoreboard players add r_holder_pos monroe 90000\n"
+result += "execute store result score r_holder_neg monroe run data get entity @s Rotation[1] -10000"
+result += "scoreboard players add r_holder_neg monroe 90000\n"
+
 
 n.write(result)
 n.close()
