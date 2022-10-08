@@ -12,6 +12,10 @@ scoreboard players set x_centre_ring_ccw monroe 0
 scoreboard players set y_centre_ring_ccw monroe 0
 scoreboard players set z_centre_ring_ccw monroe 0
 
+scoreboard players set x_centre_ring_cw monroe 0
+scoreboard players set y_centre_ring_cw monroe 0
+scoreboard players set z_centre_ring_cw monroe 0
+
 scoreboard players set x_traveller monroe 0
 scoreboard players set y_traveller monroe 0
 
