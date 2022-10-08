@@ -3,13 +3,15 @@
 
 spiral_center = "0.5 23.5 -18.5"
 circle_center = "0.5 23.5 -20.5"
-ring_ccw_center = "0.5 28.5 84.5"
-ring_cw_center  = "0.5 28.5 85.5"
+ring_ccw_center  = "0.5 28.5 84.5"
+ring_cw_center   = "0.5 28.5 85.0"
+ring_ccw2_center = "0.5 28.5 85.5"
 
 spiral_delay = 0
 circle_delay = 256
-ring_ccw_delay = 0 #288
-ring_cw_delay  = 0
+ring_ccw_delay  = 0 #288
+ring_cw_delay   = 0
+ring_ccw2_delay = 0
 
 #
 # ################################
@@ -52,6 +54,10 @@ result += """execute positioned {} run function monroe:classes/ring_cw/summon/ce
     .format(ring_cw_center)
 result += "function monroe:classes/ring_cw/summon/travellers\n"
 
+result += """execute positioned {} run function monroe:classes/ring_ccw2/summon/centre\n""" \
+    .format(ring_ccw2_center)
+result += "function monroe:classes/ring_ccw2/summon/travellers\n"
+
 n.write(result)
 n.close()
 
@@ -85,7 +91,13 @@ if (ring_cw_delay):
         .format(ring_cw_delay) 
 else:
     result += "function monroe:classes/ring_cw/travel/tick\n"
-    
+
+if (ring_ccw_delay):
+    result += """execute if score tick monroe matches {}.. run function monroe:classes/ring_ccw2/travel/tick\n"""\
+        .format(ring_ccw2_delay) 
+else:
+    result += "function monroe:classes/ring_ccw2/travel/tick\n"
+
 result += "scoreboard players add tick monroe 1"
 
 n.write(result)

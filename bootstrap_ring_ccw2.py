@@ -5,20 +5,20 @@
 num_arm = 20
 
 # Starting radius from the centre
-rad_init = 6
+rad_init = 7.2
 
 # The angle in between two adjacent blocks in one arm
-ang_res = 2.5
+ang_res = 3.3
 
 # Total amount of blocks in the arm width = 2 * half_num_blocks + 1
-half_num_blks = 3
+half_num_blks = 2
 
 # Colours across the arms
 colours = ['orange', 'light_blue', 'pink', 'yellow', 'red', 'lime', 'magenta', 'cyan','white']
 
 # Speed of extension
-rad_speed = -0.01
-tan_speed = 0.5
+rad_speed = -0.005
+tan_speed = 0.27
 #
 # ################################
 

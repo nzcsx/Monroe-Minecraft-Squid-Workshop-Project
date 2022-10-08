@@ -1,6 +1,6 @@
 
 # move coordinates
-execute positioned ^ ^-0.52 ^0.01 facing entity @e[type=marker,tag=ring_cw_centre,limit=1] feet run tp @s ~ ~ ~ 0 ~
+execute positioned ^ ^-0.26 ^0.005 facing entity @e[type=marker,tag=ring_cw_centre,limit=1] feet run tp @s ~ ~ ~ 0 ~
 
 # move poses
 execute at @s run function monroe:classes/ring_cw/travel/poses/check_location

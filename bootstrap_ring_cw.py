@@ -2,23 +2,23 @@
 # Configure the ring_cw arms here 
 
 # Number of arms
-num_arm = 40
+num_arm = 20
 
 # Starting radius from the centre
-rad_init = 6.3
+rad_init = 6.6
 
 # The angle in between two adjacent blocks in one arm
-ang_res = 2.75
+ang_res = 3.2
 
 # Total amount of blocks in the arm width = 2 * half_num_blocks + 1
-half_num_blks = 1
+half_num_blks = 2
 
 # Colours across the arms
 colours = ['orange', 'light_blue', 'pink', 'yellow', 'red', 'lime', 'magenta', 'cyan','white']
 
 # Speed of extension
-rad_speed = -0.01
-tan_speed = -0.52
+rad_speed = -0.005
+tan_speed = -0.26
 #
 # ################################
 
