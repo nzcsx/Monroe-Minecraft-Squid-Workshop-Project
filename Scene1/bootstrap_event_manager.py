@@ -69,7 +69,7 @@ n = open(path, "w+")
 result = ""
 
 if (spiral_delay):
-    result += """execute if score tick monroe matches {}.. function monroe:classes/spiral/travel/tick\n"""\
+    result += """execute if score tick monroe matches {}.. run function monroe:classes/spiral/travel/tick\n"""\
         .format(spiral_delay)
 else:
     result += "function monroe:classes/spiral/travel/tick\n"

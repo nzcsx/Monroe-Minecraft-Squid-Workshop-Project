@@ -36,7 +36,7 @@ path = os.path.join('Monroe-Datapack-Squid-Workshop-1.19.1','data','monroe','fun
 if os.path.isdir(path):
     shutil.rmtree(path)
 
-os.mkdir(os.path.join(path))
+os.makedirs(os.path.join(path))
 os.mkdir(os.path.join(path,'summon'))
 os.mkdir(os.path.join(path,'travel'))
 os.mkdir(os.path.join(path,'travel','coords'))

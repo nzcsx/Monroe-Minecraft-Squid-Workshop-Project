@@ -2,23 +2,23 @@
 # Configure the spiral arms here 
 
 # Number of arms
-num_arm = 6
+num_arm = 1
 
 # Starting radius from the centre
 rad_init = 7
 
 # The angle in between two adjacent blocks in one arm
-ang_res = 0.5
+ang_res = 1
 
 # Total amount of blocks in the arm width = 2 * half_num_blocks + 1
-half_num_blks = 16
+half_num_blks = 180
 
 # Colours across the arms
-colours = ['orange', 'light_blue', 'pink', 'yellow', 'red', 'lime', 'magenta', 'cyan','white']
+colours = ['blue']
 
 # Speed of extension
-rad_speed = 0.1
-tan_speed = 0.1
+rad_speed = 0.3
+tan_speed = 0
 #
 # ################################
 
@@ -117,14 +117,6 @@ path = os.path.join('Monroe-Datapack-Squid-Workshop-1.19.1','data','monroe','fun
 n = open(path, "w+")
 result = ""
 
-result += "# setblock\n"
-for arm_idx in range(0, \
-                     num_arm, \
-                     1):
-    result += """execute if entity @s[tag=colour_{}] positioned ~ ~0.5 ~ run setblock ~-0.6 ~0.5 ~ {}_wool keep\n""" \
-        .format(  arm_idx % len(colours)             , \
-                  colours[ arm_idx % len(colours) ]  )
-
 result += "\n# move\n"
 result += """tp @s ~{} ~{} ~ 0 0\n""" \
     .format(  tan_speed      , \
@@ -141,14 +133,6 @@ path = os.path.join('Monroe-Datapack-Squid-Workshop-1.19.1','data','monroe','fun
 n = open(path, "w+")
 result = ""
 
-result += "# setblock\n"
-for arm_idx in range(0, \
-                     num_arm, \
-                     1):
-    result += """execute if entity @s[tag=colour_{}] positioned ~ ~0.5 ~ run setblock ^ ^0.5 ^0.6 {}_wool keep\n""" \
-        .format(  arm_idx % len(colours)             , \
-                  colours[ arm_idx % len(colours) ]  )
-
 result += "\n# move\n"
 result += """tp @s ^ ^{} ^{} 0 0\n""" \
     .format(  0 - tan_speed  , \
@@ -164,14 +148,6 @@ n.close()
 path = os.path.join('Monroe-Datapack-Squid-Workshop-1.19.1','data','monroe','functions','classes','spiral','travel','location_pos.mcfunction')
 n = open(path, "w+")
 result = ""
-
-result += "# setblock\n"
-for arm_idx in range(0, \
-                     num_arm, \
-                     1):
-    result += """execute if entity @s[tag=colour_{}] positioned ~ ~0.5 ~ run setblock ^ ^-0.5 ^0.6 {}_wool keep\n""" \
-        .format(  arm_idx % len(colours)             , \
-                  colours[ arm_idx % len(colours) ]  )
     
 result += "\n# move\n"
 result += """tp @s ^ ^{} ^{} 0 0\n""" \
@@ -189,14 +165,6 @@ path = os.path.join('Monroe-Datapack-Squid-Workshop-1.19.1','data','monroe','fun
 n = open(path, "w+")
 result = ""
 
-result += "# setblock\n"
-for arm_idx in range(0, \
-                     num_arm, \
-                     1):
-    result += """execute if entity @s[tag=colour_{}] positioned ~ ~0.5 ~ run setblock ~0.6 ~-0.5 ~ {}_wool keep\n""" \
-        .format(  arm_idx % len(colours)             , \
-                  colours[ arm_idx % len(colours) ]  )
-
 result += "\n# move\n"
 result += """tp @s ~{} ~{} ~ 0 0\n""" \
     .format(  0 - tan_speed  , \
@@ -211,4 +179,4 @@ n.close()
 
 
 # done
-print('Spiral: done!')
+print('spiral: done!')
